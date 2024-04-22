@@ -1,67 +1,49 @@
-# Manipulació del DOM amb JavaScript pur (Plain JavaScript DOM Manipulations)
+# README - Frontend del Administrador de Lista
 
-En aquest repositori crearàs un _portfolio_ modificant el _DOM_.
+Este repositorio contiene el código del frontend para un administrador de lista dinámico, desarrollado como parte de un proyecto pedagógico. La aplicación permite a los usuarios organizar y administrar elementos mediante operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
 
-## Objectius
+## Contexto del Proyecto
 
-- Manipular el DOM directament, afegint i eliminant elements.
-- Fer servir CSS per donar estils als elements de la pàgina.
-- Afegir gestors d'esdeveniments (event handlers) per interactuar amb les accions que l'usuari faci a la pàgina.
+El objetivo de este proyecto es crear una interfaz interactiva que facilite a los usuarios la gestión de elementos. El diseño y contenido de la aplicación son flexibles, permitiendo adaptarse a diferentes propósitos, como la gestión de tareas, cursos, productos, recetas de cocina, entre otros.
 
-## Configuració
+## Requisitos
 
-- `npm install` per instal·lar Tailwind CSS.
-- `npm start` per a inicialitzar el compilador de Tailwind CSS.
-- Obre `index.html` al navegador amb el Live Server de VS Code.
+### Requisitos Mínimos:
 
-## Requisits bàsics
+- Los usuarios pueden agregar nuevos elementos a la lista, con al menos dos campos obligatorios.
+- Los usuarios pueden visualizar todos los elementos existentes.
+- Los usuarios pueden editar un elemento existente.
+- Los usuarios pueden eliminar un elemento existente.
+- La aplicación debe ser responsive.
 
-_Nota: no feu servir jQuery ni cap altra llibreria en aquest exercici! L'objectiu de l'activitat és acostumar-se a fer "DOM manipulations" fent servir únicament JavaScript pur._
+### Extras
 
-![Part 1 Preview](support/step1.jpg)
+- Los usuarios pueden ordenar los elementos por algún criterio.
+- Los usuarios pueden asignar categorías o etiquetas a los elementos para una mejor organización.
+- Los usuarios pueden filtrar los elementos según estas categorías.
 
-### 1. Crea un formulari (form) que afegeixi imatges a la pàgina.
+#### Extras Cósmicos
 
-- [ ] Afegeix funcionalitat.
-  - El form ha d'acceptar una URL.
-  - El form ha de tenir un botó "submit".
-  - Després de prémer el botó, la nova imatge ha d'aparèixer a dalt de la pàgina.
-- [ ] Afegeix estils.
-  - Tot ha d'estar centrat.
-  - Les imatges s'han d'emplaçar seguint una graella de 4 elements d'amplada. Pots aconseguir el resultat amb CSS pur o fent servir Bootstrap (si ja el coneixes).
+- Los usuarios pueden registrarse en la aplicación.
+- Utilización de una API para la persistencia de datos en lugar de localStorage, como json-server.
 
-![Part 2 Preview](support/step2.jpg)
+## Modalidades Pedagógicas
 
-### 2. Afegeix camps (fields) addicionals al form.
+Se dispone de una semana para completar el proyecto. La presentación y entrega final se llevarán a cabo el 25 de Abril de 2024. La presentación se dividirá en:
 
-- [ ] Afegeix funcionalitat.
-  - Crea un _input text box_ per al títol del projecte.
-  - Afegeix un _text box_ més gran (busca `textarea`) per a la descripció del projecte.
-  - Aquesta informació s'hauria d'emmagatzemar a algun lloc, però no la mostris encara. Pista: crea les variables que necessitis per emmagatzemar la informació del projecte: el títol, la descripció i la imatge.
-- [ ] Afegeix estils.
-  - Mira la imatge de sobre - el títol i la imatge són a la mateixa línia, i la descripció del projecte se situa a la línia de sota.
+- 2 minutos de demostración de la aplicación.
+- 2 minutos de code review.
+- 2 minutos para explicar el flujo de trabajo y la organización.
 
-![Part 3 Preview](support/step3.jpg)
+## Entregables
 
-### 3. Crea la secció de _featured image_ (imatge destacada)
+- Repositorio de GitHub con el código del frontend.
 
-- [ ] Afegeix funcionalitat.
-  - Si encara no hi ha imatges a la pàgina, no s'hauria de mostrar res.
-  - Quan fem clic sobre les imatges s'hauria de mostrar/reemplaçar la imatge destacada amb les altres imatges.
-- [ ] Afegeix estils.
-  - La imatge destacada hauria d'aparèixer a l'esquerra i el títol i la descripció a la dreta.
+## Criterios de Rendimiento
 
-### 4. Millora els estils
+- Correcta entrega de archivos en el repositorio de GitHub.
+- Cumplimiento de las pautas de presentación final del trabajo.
 
-- [ ] Juga amb els estils per què sembli el més professional possible!
+---
 
-## Recursos
-
-- [MDN - Manipulating the DOM Guide](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents)
-- [Plain JS - Common DOM Manipulation methods](https://plainjs.com/javascript/manipulation/)
-- [Eloquent JavaScript - The DOM](https://eloquentjavascript.net/14_dom.html)
-- [Eloquent JavaScript - Handling Events](https://eloquentjavascript.net/15_event.html)
-
-## Notes
-
-_Aquest és un projecte d'estudiant creat a [CodeOp](http://CodeOp.tech), al bootcamp de Front End Development a Barcelona._
+*Nota: Este README proporciona una visión general del proyecto y sus requisitos. Para obtener detalles específicos sobre la implementación y la estructura del código, consulte la documentación y el código fuente en el repositorio.*
