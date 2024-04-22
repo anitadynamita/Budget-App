@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget App</title>
+    <link href="styles.css" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -13,7 +14,9 @@
             <!-- Budget -->
             <div class="total-amount-container bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-gray-700 font-semibold mb-4">Budget</h3>
+                <!-- Error message -->
                 <p class="error hidden text-red-500" id="budget-error">Value cannot be empty or negative</p>
+                <!-- Error message -->
                 <input type="number" id="total-amount" placeholder="Enter Total Amount"
                        class="block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500">
                 <button class="submit bg-green-500 text-white font-semibold py-2 px-4 rounded-md" id="total-amount-button">Set Budget</button>
@@ -59,6 +62,6 @@
     </div>
 </div>
 <!-- Script -->
-<script src="script.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
