@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget App</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div class="wrapper mx-auto max-w-xl mt-8 px-4">
+    <div class="container">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Budget -->
+            <div class="total-amount-container bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-700 font-semibold mb-4">Budget</h3>
+                <p class="error hidden text-red-500" id="budget-error">Value cannot be empty or negative</p>
+                <input type="number" id="total-amount" placeholder="Enter Total Amount"
+                       class="block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500">
+                <button class="submit bg-green-500 text-white font-semibold py-2 px-4 rounded-md" id="total-amount-button">Set Budget</button>
+            </div>
+
+            <!-- Expenses -->
+            <div class="user-amount-container bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-gray-700 font-semibold mb-4">Expenses</h3>
+                <p class="error hidden text-red-500" id="product-title-error">Values cannot be empty</p>
+                <!--Product-->
+                <input type="text" class="product-title block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500"
+                       id="product-title" placeholder="Enter Title of Product">
+                <!--Cost Product-->
+                <input type="number" id="user-amount" placeholder="Enter Cost of Product"
+                       class="block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500">
+                <!--Button check amount-->
+                <button class="submit bg-green-500 text-white font-semibold py-2 px-4 rounded-md" id="check-amount">Check Amount</button>
+            </div>
+        </div>
+        <!-- Output -->
+        <div class="output-container flex justify-between items-center bg-green-500 text-white rounded-lg shadow-md my-8 p-4">
+            <div>
+                <!--Total Budget-->
+                <p>Total Budget</p>
+                <span id="amount">0</span>
+            </div>
+            <div>
+                <!--Expenses-->
+                <p>Expenses</p>
+                <span id="expenditure-value">0</span>
+            </div>
+            <div>
+                <!--Balance-->
+                <p>Balance</p>
+                <span id="balance-amount">0</span>
+            </div>
+        </div>
+    </div>
+    <!-- Expenses List -->
+    <div class="list bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-gray-700 font-semibold mb-4">Expense List</h3>
+        <div class="list-container" id="list"></div>
+    </div>
+</div>
+<!-- Script -->
+<script src="script.js"></script>
+</body>
+</html>
