@@ -1,55 +1,113 @@
-//seleciono los elementos del DOM y asigno variables
+// Seleccionar elementos del DOM y asignar variables
+let totalAmount = document.getElementById("total-amount");
+let userAmount = document.getElementById("user-amount");
+const checkAmountButton = document.getElementById("check-amount");
+const totalAmountButton = document.getElementById("total-amount-button");
+const productTitle = document.getElementById("product-title"); // Corregido el ID
 
-let totalAmount = document.getElementById("total-amount");// aqui entro la cantidad total de presupuesto
-let userAmount = document.getElementById("user-amount"); // aqui entrada de lo que cuesta el producto: alquiler, comida, gas, luz...
-const checkAmountButton = document.getElementById("check-amount");//boton que añade los gastos de las expenses
+// Mensajes de error
+const errorMessage = document.getElementById("budget-error");
+const productTitleError = document.getElementById("product-title-error"); // Corregido el ID
+const productCostError = document.getElementById("product-cost-error"); // Agregado
 
-const totalAmountButton = document.getElementById("total-amount-button");//boton que añade el presupuesto total que le indicamos
+const amount = document.getElementById("amount");
+const expenditureValue = document.getElementById("expenditure-value");
+const balanceValue = document.getElementById("balance-amount");
+const list = document.getElementById("list");
 
-const productTitle = document.getElementById("product title");//input del nombre del producto que añadimos
+let tempAmount = 0;
 
-//AQUÍ MENSAJES DE ERRROR//
-
-const errorMessage = document.getElementById("budget-error");//Almacena la referencia al elemento HTML que muestra un mensaje de error si el monto total ingresado es negativo o vacío.
-
-const productTitleError = document.getElementById("product-title");//Almacena la referencia al elemento HTML que muestra un mensaje de error si el título del producto está vacío.
-
-const productCostError = document.getElementById("product-cost-error");//Almacena la referencia al elemento HTML que muestra un mensaje de error si el costo del producto está vacío.
-
-//AQUÍ MENSAJES DE ERRROR//
-
-const amount = document.getElementById("amount");//muestra el total del presupuesto 
-const expenditureValue = document.getElementById("expenditure-value");//muestra el total de los gastos
-const balanceValue = document.getElementById("balance-amount"); // Elemento que muestra el saldo restante después de los gastos
-
-const list = document.getElementById("list"); // Elemento que representa la lista de gastos, dónde vamos añadiendo los gastos
-
-let tempAmount = 0; // Variable temporal para almacenar el valor del monto total ingresado por el usuario
-
-
-
-//1. EVENT LISTENER PARA INDICAR DEL PRESUPUESTO QUE DISPONEMOS
-
+// EVENT LISTENER PARA INDICAR DEL PRESUPUESTO QUE DISPONEMOS
 totalAmountButton.addEventListener("click", () => {
-    // Guardar el valor del monto total ingresado por el usuario
-    tempAmount = totalAmount.value;
+  tempAmount = totalAmount.value;
 
-
-
-   // Verificar si la cantidad está vacía o es negativa
-  if (tempAmount === "" || tempAmount <= 0) { //Comprueba si tempAmount es una cadena vacía o si es menor o igual a cero o 0.
-    errorMessage.classList.remove("hide"); // Mostrar mensaje de ERROR
-
+  if (tempAmount === "" || tempAmount <= 0) {
+    errorMessage.classList.remove("hide");
   } else {
-    errorMessage.classList.add("hide"); // Ocultar mensaje de ERROR
-    
-    // Actualizar el valor del presupuesto
+    errorMessage.classList.add("hide");
     amount.innerHTML = tempAmount;
-    
-    // Actualizar el valor del saldo
     balanceValue.innerText = tempAmount - expenditureValue.innerText;
-    
-    // Limpiar el campo de entrada de la cantidad total
     totalAmount.value = "";
   }
+});
+
+// Función para deshabilitar o habilitar los botones de editar y borrar en la interfaz de usuario.
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  });
+};
+
+// Función para Modificar Elementos de la Lista
+const modifyElement = (element, edit = false) => {
+  let parentDiv = element.parentElement;
+  let currentBalance = balanceValue.innerText;
+  let currentExpense = expenditureValue.innerText;
+  let parentAmount = parentDiv.querySelector(".amount").innerText;
+
+  if (edit) {
+    let parentText = parentDiv.querySelector(".product").innerText;
+    productTitle.value = parentText;
+    userAmount.value = parentAmount;
+    disableButtons(true);
+  }
+
+  balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
+  expenditureValue.innerText = parseInt(currentExpense) - parseInt(parentAmount);
+  parentDiv.remove();
+};
+
+// Función para Crear Lista
+const listCreator = (expenseName, expenseValue) => {
+  let sublistContent = document.createElement("div");
+  sublistContent.classList.add("sublist-content", "flex-space");
+  list.appendChild(sublistContent);
+
+  sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
+
+  let editButton = document.createElement("button");
+  editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+  editButton.style.fontSize = "1.2em";
+  editButton.addEventListener("click", () => {
+    modifyElement(editButton, true);
+  });
+
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+  deleteButton.style.fontSize = "1.2em";
+  deleteButton.addEventListener("click", () => {
+    modifyElement(deleteButton);
+  });
+
+  sublistContent.appendChild(editButton);
+  sublistContent.appendChild(deleteButton);
+
+  document.getElementById("list").appendChild(sublistContent);
+};
+
+// Función para Agregar Gastos
+checkAmountButton.addEventListener("click", () => {
+  if (!userAmount.value || !productTitle.value) {
+    if (!userAmount.value) {
+      productCostError.classList.remove("hide");
+    } else {
+      productCostError.classList.add("hide");
+    }
+    if (!productTitle.value) {
+      productTitleError.classList.remove("hide");
+    } else {
+      productTitleError.classList.add("hide");
+    }
+    return false;
+  }
+  disableButtons(false);
+  let expenditure = parseInt(userAmount.value);
+  let sum = parseInt(expenditureValue.innerText) + expenditure;
+  expenditureValue.innerText = sum;
+  const totalBalance = tempAmount - sum;
+  balanceValue.innerText = totalBalance;
+  listCreator(productTitle.value, userAmount.value);
+  productTitle.value = "";
+  userAmount.value = "";
 });

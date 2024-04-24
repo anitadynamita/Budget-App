@@ -1,1 +1,20 @@
 
+.hide {
+    display: none;
+  }
+
+.error {
+    color: #ff465a;
+  }
+
+.edit {
+    margin-left: auto;
+  }
+.edit,
+.delete {
+    background: transparent;
+    cursor: pointer;
+    margin-right: 1.5em;
+    border: none;
+    color: #587ef4;
+  }

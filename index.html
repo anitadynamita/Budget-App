@@ -9,56 +9,55 @@
 </head>
 <body class="bg-gray-100">
 <div class="wrapper mx-auto max-w-xl mt-8 px-4">
-    <div class="container">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Budget -->
-            <div class="total-amount-container bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-gray-700 font-semibold mb-4">Budget</h3>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Budget</h3>
                 <!-- Error message -->
-                <p class="error hidden text-red-500" id="budget-error">Value cannot be empty or negative</p>
-                <!-- Error message -->
-                <input type="number" id="total-amount" placeholder="Enter Total Amount"
-                       class="block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500">
-                <button class="submit bg-green-500 text-white font-semibold py-2 px-4 rounded-md" id="total-amount-button">Set Budget</button>
+                <p class="hide error text-red-600" id="budget-error">Value cannot be empty or negative</p>
+                <!-- Button -->
+                <input type="number" id="total-amount" placeholder="Enter Total Amount" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <button class="submit mt-4 bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600" id="total-amount-button">Set Budget</button>
             </div>
 
             <!-- Expenses -->
-            <div class="user-amount-container bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-gray-700 font-semibold mb-4">Expenses</h3>
-                <p class="error hidden text-red-500" id="product-title-error">Values cannot be empty</p>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Expenses</h3>
+                <p class="hide error text-red-600" id="product-title-error">Title cannot be empty</p>
+                <p class="hide error text-red-600" id="product-cost-error">Cost cannot be empty</p>
                 <!--Product-->
-                <input type="text" class="product-title block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500"
-                       id="product-title" placeholder="Enter Title of Product">
+                <input type="text" class="product-title block w-full border-gray-300 rounded-md shadow-sm mb-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="product-title" placeholder="Enter Title of Product">
                 <!--Cost Product-->
-                <input type="number" id="user-amount" placeholder="Enter Cost of Product"
-                       class="block w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-green-500">
+                <input type="number" id="user-amount" placeholder="Enter Cost of Product" class="block w-full border-gray-300 rounded-md shadow-sm mb-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <!--Button check amount-->
-                <button class="submit bg-green-500 text-white font-semibold py-2 px-4 rounded-md" id="check-amount">Check Amount</button>
+                <button class="submit bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600" id="check-amount">Check Amount</button>
             </div>
         </div>
         <!-- Output -->
-        <div class="output-container flex justify-between items-center bg-green-500 text-white rounded-lg shadow-md my-8 p-4">
+        <div class="bg-white rounded-lg shadow-md mt-8 p-6 flex justify-between items-center">
             <div>
                 <!--Total Budget-->
-                <p>Total Budget</p>
-                <span id="amount">0</span>
+                <p class="text-gray-700 font-semibold">Total Budget</p>
+                <span id="amount" class="block text-2xl text-gray-900">0</span>
             </div>
             <div>
                 <!--Expenses-->
-                <p>Expenses</p>
-                <span id="expenditure-value">0</span>
+                <p class="text-gray-700 font-semibold">Expenses</p>
+                <span id="expenditure-value" class="block text-2xl text-gray-900">0</span>
             </div>
             <div>
                 <!--Balance-->
-                <p>Balance</p>
-                <span id="balance-amount">0</span>
+                <p class="text-gray-700 font-semibold">Balance</p>
+                <span id="balance-amount" class="block text-2xl text-gray-900">0</span>
             </div>
         </div>
     </div>
     <!-- Expenses List -->
-    <div class="list bg-white rounded-lg shadow-md p-6">
-        <h3 class="text-gray-700 font-semibold mb-4">Expense List</h3>
+    <div class="bg-white rounded-lg shadow-md mt-8 p-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Expense List</h3>
         <div class="list-container" id="list"></div>
+      </div>
     </div>
 </div>
 <!-- Script -->
