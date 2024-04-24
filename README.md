@@ -1,49 +1,36 @@
-# README - Frontend del Administrador de Lista
+# Budget App
 
-Este repositorio contiene el código del frontend para un administrador de lista dinámico, desarrollado como parte de un proyecto pedagógico. La aplicación permite a los usuarios organizar y administrar elementos mediante operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+Esta es una aplicación web de gestión de presupuesto que permite a los usuarios establecer un presupuesto total, agregar gastos, editar y eliminar gastos, y ver el saldo actualizado en tiempo real.
 
-## Contexto del Proyecto
+## Características
 
-El objetivo de este proyecto es crear una interfaz interactiva que facilite a los usuarios la gestión de elementos. El diseño y contenido de la aplicación son flexibles, permitiendo adaptarse a diferentes propósitos, como la gestión de tareas, cursos, productos, recetas de cocina, entre otros.
+- Establecer un presupuesto total.
+- Agregar gastos con un título y un costo.
+- Editar gastos existentes.
+- Eliminar gastos de la lista.
+- Ver el saldo actualizado después de cada transacción.
 
-## Requisitos
+## Estructura del Código
 
-### Requisitos Mínimos:
+El código JavaScript está organizado de la siguiente manera:
 
-- Los usuarios pueden agregar nuevos elementos a la lista, con al menos dos campos obligatorios.
-- Los usuarios pueden visualizar todos los elementos existentes.
-- Los usuarios pueden editar un elemento existente.
-- Los usuarios pueden eliminar un elemento existente.
-- La aplicación debe ser responsive.
+1. **Selección de Elementos del DOM y Asignación de Variables:** Se seleccionan elementos del DOM utilizando métodos como `document.getElementById()` y se asignan a variables para su posterior uso en el script.
 
-### Extras
+2. **Event Listeners:** Se añaden event listeners a los botones relevantes para detectar las acciones del usuario, como establecer el presupuesto total o agregar gastos. Cuando se activa un evento, se llama a una función asociada para manejar la acción correspondiente.
 
-- Los usuarios pueden ordenar los elementos por algún criterio.
-- Los usuarios pueden asignar categorías o etiquetas a los elementos para una mejor organización.
-- Los usuarios pueden filtrar los elementos según estas categorías.
+3. **Funciones:** Se definen varias funciones para modularizar la lógica y promover la reutilización del código. Estas funciones incluyen la validación de entradas, la creación de nuevos elementos en la lista de gastos, la modificación y eliminación de elementos existentes, y la actualización del saldo y los gastos totales.
 
-#### Extras Cósmicos
+4. **Manipulación del DOM:** El código JavaScript manipula dinámicamente el Document Object Model (DOM) para actualizar la interfaz de usuario en respuesta a las acciones del usuario. Se añaden, modifican y eliminan elementos de la página web según sea necesario para reflejar el estado actual del presupuesto.
 
-- Los usuarios pueden registrarse en la aplicación.
-- Utilización de una API para la persistencia de datos en lugar de localStorage, como json-server.
+## Ejecución del Proyecto
 
-## Modalidades Pedagógicas
+Para ejecutar el proyecto, simplemente abre el archivo HTML en un navegador web compatible con JavaScript. A continuación, puedes interactuar con la aplicación de la siguiente manera:
 
-Se dispone de una semana para completar el proyecto. La presentación y entrega final se llevarán a cabo el 25 de Abril de 2024. La presentación se dividirá en:
+1. Establece un presupuesto total introduciendo un valor en el campo correspondiente y haciendo clic en el botón "Set Budget".
+2. Agrega gastos ingresando un título y un costo en los campos respectivos y haciendo clic en el botón "Check Amount".
+3. Edita un gasto existente haciendo clic en el icono de edición (lápiz) junto al elemento de la lista.
+4. Elimina un gasto de la lista haciendo clic en el icono de eliminación (papelera) junto al elemento de la lista.
 
-- 2 minutos de demostración de la aplicación.
-- 2 minutos de code review.
-- 2 minutos para explicar el flujo de trabajo y la organización.
+El saldo y los gastos totales se actualizan automáticamente después de cada transacción, y los mensajes de error se muestran si se ingresan datos incorrectos o incompletos.
 
-## Entregables
-
-- Repositorio de GitHub con el código del frontend.
-
-## Criterios de Rendimiento
-
-- Correcta entrega de archivos en el repositorio de GitHub.
-- Cumplimiento de las pautas de presentación final del trabajo.
-
----
-
-*Nota: Este README proporciona una visión general del proyecto y sus requisitos. Para obtener detalles específicos sobre la implementación y la estructura del código, consulte la documentación y el código fuente en el repositorio.*
+¡Disfruta utilizando la aplicación de presupuesto y mantén un mejor control de tus finanzas!
