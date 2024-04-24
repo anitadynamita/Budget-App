@@ -3,12 +3,12 @@ let totalAmount = document.getElementById("total-amount");
 let userAmount = document.getElementById("user-amount");
 const checkAmountButton = document.getElementById("check-amount");
 const totalAmountButton = document.getElementById("total-amount-button");
-const productTitle = document.getElementById("product-title"); // Corregido el ID
+const productTitle = document.getElementById("product-title");
 
 // Mensajes de error
 const errorMessage = document.getElementById("budget-error");
-const productTitleError = document.getElementById("product-title-error"); // Corregido el ID
-const productCostError = document.getElementById("product-cost-error"); // Agregado
+const productTitleError = document.getElementById("product-title-error");
+const productCostError = document.getElementById("product-cost-error");
 
 const amount = document.getElementById("amount");
 const expenditureValue = document.getElementById("expenditure-value");
@@ -19,95 +19,113 @@ let tempAmount = 0;
 
 // EVENT LISTENER PARA INDICAR DEL PRESUPUESTO QUE DISPONEMOS
 totalAmountButton.addEventListener("click", () => {
-  tempAmount = totalAmount.value;
+    tempAmount = totalAmount.value;
 
-  if (tempAmount === "" || tempAmount <= 0) {
-    errorMessage.classList.remove("hide");
-  } else {
-    errorMessage.classList.add("hide");
-    amount.innerHTML = tempAmount;
-    balanceValue.innerText = tempAmount - expenditureValue.innerText;
-    totalAmount.value = "";
-  }
+    if (tempAmount === "" || tempAmount <= 0) {
+        errorMessage.classList.remove("hide"); // Muestra el mensaje de error
+    } else {
+        errorMessage.classList.add("hide"); // Oculta el mensaje de error
+        amount.innerHTML = tempAmount;
+        balanceValue.innerText = tempAmount - expenditureValue.innerText;
+        totalAmount.value = "";
+    }
 });
 
 // Función para deshabilitar o habilitar los botones de editar y borrar en la interfaz de usuario.
 const disableButtons = (bool) => {
-  let editButtons = document.getElementsByClassName("edit");
-  Array.from(editButtons).forEach((element) => {
-    element.disabled = bool;
-  });
+    let editButtons = document.getElementsByClassName("edit");
+    Array.from(editButtons).forEach((element) => {
+        element.disabled = bool;
+    });
+
+    console.log("Buttons disabled:", bool);
 };
 
 // Función para Modificar Elementos de la Lista
 const modifyElement = (element, edit = false) => {
-  let parentDiv = element.parentElement;
-  let currentBalance = balanceValue.innerText;
-  let currentExpense = expenditureValue.innerText;
-  let parentAmount = parentDiv.querySelector(".amount").innerText;
+    let parentDiv = element.parentElement.parentElement;
+    let currentBalance = balanceValue.innerText;
+    let currentExpense = expenditureValue.innerText;
+    let parentAmount = parentDiv.querySelector(".amount").innerText;
 
-  if (edit) {
-    let parentText = parentDiv.querySelector(".product").innerText;
-    productTitle.value = parentText;
-    userAmount.value = parentAmount;
-    disableButtons(true);
-  }
+    if (edit) {
+        let parentText = parentDiv.querySelector(".product").innerText;
+        productTitle.value = parentText;
+        userAmount.value = parentAmount;
+        disableButtons(true);
+    }
 
-  balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
-  expenditureValue.innerText = parseInt(currentExpense) - parseInt(parentAmount);
-  parentDiv.remove();
+    balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
+    expenditureValue.innerText = parseInt(currentExpense) - parseInt(parentAmount);
+    parentDiv.remove();
+
+    console.log("Element modified:", parentDiv);
 };
 
 // Función para Crear Lista
 const listCreator = (expenseName, expenseValue) => {
   let sublistContent = document.createElement("div");
-  sublistContent.classList.add("sublist-content", "flex-space");
+  sublistContent.classList.add("sublist-content", "flex", "justify-between", "items-center");
   list.appendChild(sublistContent);
 
-  sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
+  let productTitle = document.createElement("p");
+  productTitle.classList.add("product");
+  productTitle.textContent = expenseName;
 
-  let editButton = document.createElement("button");
-  editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-  editButton.style.fontSize = "1.2em";
-  editButton.addEventListener("click", () => {
-    modifyElement(editButton, true);
+  let amount = document.createElement("p");
+  amount.classList.add("amount");
+  amount.textContent = expenseValue;
+
+  let iconContainer = document.createElement("div");
+  iconContainer.classList.add("icon-container");
+
+  let editIcon = document.createElement("i");
+  editIcon.classList.add("fas", "fa-edit", "edit");
+  editIcon.addEventListener("click", () => {
+      modifyElement(editIcon, true);
   });
 
-  let deleteButton = document.createElement("button");
-  deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
-  deleteButton.style.fontSize = "1.2em";
-  deleteButton.addEventListener("click", () => {
-    modifyElement(deleteButton);
+  let deleteIcon = document.createElement("i");
+  deleteIcon.classList.add("fas", "fa-trash-alt", "delete");
+  deleteIcon.addEventListener("click", () => {
+      modifyElement(deleteIcon);
   });
 
-  sublistContent.appendChild(editButton);
-  sublistContent.appendChild(deleteButton);
+  sublistContent.appendChild(productTitle);
+  sublistContent.appendChild(amount);
+  iconContainer.appendChild(editIcon);
+  iconContainer.appendChild(deleteIcon);
+  sublistContent.appendChild(iconContainer);
 
-  document.getElementById("list").appendChild(sublistContent);
+  console.log("Element added to list:", sublistContent);
 };
+
 
 // Función para Agregar Gastos
 checkAmountButton.addEventListener("click", () => {
-  if (!userAmount.value || !productTitle.value) {
-    if (!userAmount.value) {
-      productCostError.classList.remove("hide");
-    } else {
-      productCostError.classList.add("hide");
+    // Ocultar todos los mensajes de error al inicio
+    productTitleError.classList.add("hide");
+    productCostError.classList.add("hide");
+
+    if (!userAmount.value || !productTitle.value) {
+        if (!userAmount.value) {
+            productCostError.classList.remove("hide"); // Muestra el mensaje de error de costo
+        }
+        if (!productTitle.value) {
+            productTitleError.classList.remove("hide"); // Muestra el mensaje de error de título
+        }
+        return false;
     }
-    if (!productTitle.value) {
-      productTitleError.classList.remove("hide");
-    } else {
-      productTitleError.classList.add("hide");
-    }
-    return false;
-  }
-  disableButtons(false);
-  let expenditure = parseInt(userAmount.value);
-  let sum = parseInt(expenditureValue.innerText) + expenditure;
-  expenditureValue.innerText = sum;
-  const totalBalance = tempAmount - sum;
-  balanceValue.innerText = totalBalance;
-  listCreator(productTitle.value, userAmount.value);
-  productTitle.value = "";
-  userAmount.value = "";
+
+    disableButtons(false);
+    let expenditure = parseInt(userAmount.value);
+    let sum = parseInt(expenditureValue.innerText) + expenditure;
+    expenditureValue.innerText = sum;
+    const totalBalance = tempAmount - sum;
+    balanceValue.innerText = totalBalance;
+    listCreator(productTitle.value, userAmount.value);
+    productTitle.value = "";
+    userAmount.value = "";
+
+    console.log("Expense added successfully.");
 });
