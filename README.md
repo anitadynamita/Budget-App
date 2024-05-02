@@ -6,6 +6,7 @@ Esta es una aplicación web de gestión de presupuesto que permite a los usuario
 
 - Establecer un presupuesto total.
 - Agregar gastos con un título y un costo.
+- Ver un resumen de presupuesto total, gastos y balance
 - Editar gastos existentes.
 - Eliminar gastos de la lista.
 - Ver el saldo actualizado después de cada transacción.
